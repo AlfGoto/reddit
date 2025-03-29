@@ -32,7 +32,7 @@ export async function getBetters(session: Session): Promise<BestPosts[]> {
       );
       const text = await res.text();
       console.error(`Error fetching posts for subreddit ${sub}:`, error);
-      console.log("complete text:", text);
+      console.error("complete text:", text);
     }
   }
 
