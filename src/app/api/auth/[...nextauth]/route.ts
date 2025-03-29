@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import type { NextAuthOptions } from "next-auth";
+import { NextApiRequest, NextApiResponse } from "next";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -17,6 +18,9 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-const handler = NextAuth(authOptions);
+const handler = (req: NextApiRequest, res: NextApiResponse) => {
+  return NextAuth(req, res, authOptions);
+};
 
+// Export GET and POST methods for the handler
 export { handler as GET, handler as POST };

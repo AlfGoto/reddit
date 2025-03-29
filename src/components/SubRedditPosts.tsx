@@ -102,7 +102,7 @@ function PostCard({ post }: { post: Post }) {
                     post.thumbnail !== "default" && (
                       <div className="relative h-20 w-full overflow-hidden rounded-md">
                         <Image
-                          src={post.thumbnail || "/placeholder.svg"}
+                          src={imageToShow!}
                           alt={post.title}
                           fill
                           className="object-cover"
@@ -121,11 +121,10 @@ function PostCard({ post }: { post: Post }) {
             <DialogTitle>{post.title}</DialogTitle>
           </DialogHeader>
           <div className="mt-4 space-y-4">
-            {/* Show full-size image if available */}
             {imageToShow && (
               <div className="relative rounded-lg overflow-hidden">
                 <Image
-                  src={imageToShow || "/placeholder.svg"}
+                  src={imageToShow}
                   alt={post.title}
                   width={800}
                   height={450}
