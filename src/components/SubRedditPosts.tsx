@@ -12,6 +12,7 @@ import PostRenderer from "./TextRenderer";
 import Image from "next/image";
 import type { Post } from "@/types/reddit";
 import { getBetters } from "@/lib/reddit/getBetters";
+import { SubHeader } from "./SubHeader";
 
 interface SubredditPostsProps {
   session: Session;
@@ -27,12 +28,10 @@ export default async function SubredditPosts({ session }: SubredditPostsProps) {
 
         return (
           <section
-            key={subData.sub}
-            className="rounded-lg border bg-card p-4 shadow-sm md:p-6"
+            key={subData.sub.sub}
+            className="rounded-lg border bg-card p-4 shadow-sm md:p-6 flex flex-col gap-2"
           >
-            <h1 className="mb-4 text-xl font-bold text-card-foreground md:text-2xl">
-              r/{subData.sub}
-            </h1>
+            <SubHeader sub={subData.sub} />
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {displayPosts.map((post) => (
                 <PostCard key={post.id} post={post} />
@@ -75,7 +74,7 @@ function PostCard({ post }: { post: Post }) {
   const imageToShow = isImageUrl ? post.url : bestImage;
 
   return (
-    <Card className="h-full flex flex-col">
+    <Card className="h-full flex flex-col max-w-full overflow-hidden">
       <Dialog>
         <DialogTrigger asChild>
           <div className="cursor-pointer flex-grow">

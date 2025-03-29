@@ -22,6 +22,12 @@ export type Post = {
 };
 
 export type BestPosts = {
-  sub: string;
+  sub: Sub;
   posts: Post[];
+};
+
+export type Sub = {
+  img: string;
+  sub: string;
+  id: number;
 };
