@@ -27,7 +27,12 @@ export async function getBetters(session: Session): Promise<BestPosts[]> {
 
       bestPosts.push({ sub, posts });
     } catch (error) {
+      const res = await fetch(
+        `https://www.reddit.com/r/${sub}/top.json?t=week&limit=6`
+      );
+      const text = await res.text();
       console.error(`Error fetching posts for subreddit ${sub}:`, error);
+      console.log("complete text:", text);
     }
   }
 
